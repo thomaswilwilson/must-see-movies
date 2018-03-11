@@ -29,9 +29,11 @@
       </li>
       <% @venues.each do |venue| %>
         <li class="list-group-item">
+          <p>
           <a href="/venues/<%= venue.id %>">
             <%= venue.name%>
           </a>
+          </p>
           <small class="float-right text-muted">
             about <%=time_ago_in_words(Bookmark.where(:dish_id => @dish.id, :venue_id => venue.id).first.created_at)%> ago
             <a href="/bookmarks/<%=Bookmark.where(:dish_id => @dish.id, :venue_id => venue.id).first.id%>/edit">
