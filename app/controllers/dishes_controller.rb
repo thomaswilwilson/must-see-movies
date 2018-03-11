@@ -8,7 +8,16 @@ class DishesController < ApplicationController
   def show
     @bookmark = Bookmark.new
     @dish = Dish.find(params[:id])
-    render("dishes/show.html.erb")
+    @venues = Venue.order(:name)
+    @not_ids = Bookmark.where(:user_id => current_user.id, :dish_id => @dish.id)
+    @not_venues = Venue.all
+    @not_ids.each do |bm|
+      @not_venues = @not_venues.where.not(:id => bm.venue_id)
+   end
+  @not_venues.each do |venue|
+    @venues = @venues.where.not(:id => venue.id)
+  end
+  render("dishes/show.html.erb")
   end
 
   def new
