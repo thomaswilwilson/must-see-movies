@@ -23,7 +23,11 @@ class VenuesController < ApplicationController
   def show
     @bookmark = Bookmark.new
     @venue = Venue.find(params[:id])
-
+    @location_hash = Gmaps4rails.build_markers(Venue.where(:id => @venue.id).where.not(:address_latitude => nil)) do |venue, marker|
+      marker.lat venue.address_latitude
+      marker.lng venue.address_longitude
+      marker.infowindow "<h5><a href='/venues/#{venue.id}'>#{venue.name}</a></h5><small>#{venue.address_formatted_address}</small>"
+    end
     render("venues/show.html.erb")
   end
 
