@@ -103,7 +103,7 @@
           <form action="/create_bookmark" method="post" class="form-inline">
             <input type="hidden" name="dish_id" class="form-control" value="<%=dish.id%>">
             <input type="hidden" name="user_id" class="form-control" value="<%=current_user.id%>">
-            <%= select_tag(:venue_id, options_from_collection_for_select(Venue.order(:name), :id, :name ), :class => "form-control-sm mr-sm-1") %>
+            <%= select_tag(:venue_id, options_from_collection_for_select(Venue.order(:name), :id, :name ), include_blank: "Choose a venue...", :class => "form-control form-control-sm mr-sm-1") %>
             <button class="btn btn-primary btn-sm"><i class="fa fa-heart"></i></button>
             <% end %>
             </td>

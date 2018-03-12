@@ -20,7 +20,7 @@
             <label for="venue_id" class="control-label sr-only">
                 Venue
             </label>
-            <%= select_tag(:venue_id, options_from_collection_for_select(Venue.order(:name), :id, :name), {:class => "form-control mr-1"}) %>
+            <%= select_tag(:venue_id, options_from_collection_for_select(Venue.order(:name), :id, :name), include_blank: "Choose a venue...", :class => "form-control mr-1") %>
             <button class = "btn btn-primary">
               <i class="fa fa-heart"></i>
             </button>
